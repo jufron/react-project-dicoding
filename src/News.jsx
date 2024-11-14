@@ -1,23 +1,23 @@
 import React from 'react';
 
 
-function Button({ link }) {
+const Button = ({ link }) => {
   return (
     <a href={ link }>Find Out More</a>
   );
-}
+};
 
 
-function CardHeader({ image, category }) {
+const CardHeader = ({ image, category }) => {
     return (
         <header>
             <h4>{ category }</h4>
             <img src={ image } alt="poster-news" />
         </header>
     );
-}
+};
 
-function CardBody({ date, title, content, link }) {
+const CardBody = ({ date, title, content, link }) => {
     return (
         <div>
             <p>{ date }</p>
@@ -28,7 +28,7 @@ function CardBody({ date, title, content, link }) {
     );
 }
 
-function Card({ image, category, date, title, content, link }) {
+const Card = ({ image, category, date, title, content, link }) => {
     return (
         <article>
             <CardHeader image={ image } category={ category } />
@@ -37,7 +37,7 @@ function Card({ image, category, date, title, content, link }) {
     );
 }
 
-function Header({ title, subTitle }) {
+const Header = ({ title, subTitle }) => {
     return (
         <header>
             <h1>{ title }</h1>
@@ -74,38 +74,15 @@ const someNews = [
     }
 ];
 
-
-function News() {
+const News = () => {
     return (
         <div>
             <Header title="News" subTitle="Latest News" />
-            {/* <Card 
-                title={ someNews[0].title }
-                date={ someNews[0].date }
-                content={ someNews[0].content }
-                image={ someNews[0].image }
-                category={ someNews[0].category }
-                link={ someNews[0].link }
-            />
-            <Card 
-                title={ someNews[1].title }
-                date={ someNews[1].date }
-                content={ someNews[1].content }
-                image={ someNews[1].image }
-                category={ someNews[1].category }
-                link={ someNews[1].link }
-            />
-            <Card 
-                title={ someNews[2].title }
-                date={ someNews[2].date }
-                content={ someNews[2].content }
-                image={ someNews[2].image }
-                category={ someNews[2].category }
-                link={ someNews[2].link }
-            /> */}
-            <Card {...someNews[0]} />
-            <Card {...someNews[1]} />
-            <Card {...someNews[2]} />
+            { someNews.map(( news, index) => {
+                return (
+                    <Card key={ index } {...news} />
+                );
+            })}
         </div>
     );
 }
